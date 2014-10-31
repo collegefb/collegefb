@@ -1,0 +1,22 @@
+{
+    "name": "javiyt/collegefb",
+    "description": "College Football Database domain logic",
+    "homepage": "https://github.com/javiyt/collegefb",
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "javiyt",
+            "email": "me@javi.yt"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CollegeFB\\": "src/"
+        }
+    }
+}
