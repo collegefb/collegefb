@@ -13,7 +13,10 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "ext-mongo": "*",
+        "php": ">=5.4"
+    },
     "autoload": {
         "psr-4": {
             "CollegeFB\\": "src/"
