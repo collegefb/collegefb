@@ -13,11 +13,11 @@ class UpdateCollegeSpec extends ObjectBehavior
     public function let(CollegeInterface $repository, CollegeFactory $factory)
     {
         $college_to_save = new CollegeEntity();
-        $factory->collegeEntitie(array())->willReturn($college_to_save);
+        $factory->collegeEntity(array())->willReturn($college_to_save);
 
         $non_existing_college = new CollegeEntity();
         $non_existing_college->setName('non_existing');
-        $factory->collegeEntitie(array('name' => 'fails'))->willReturn($non_existing_college);
+        $factory->collegeEntity(array('name' => 'fails'))->willReturn($non_existing_college);
 
         $repository->getByName(null)->willReturn(true);
         $repository->getByName('non_existing')->willReturn(false);

@@ -8,7 +8,7 @@ class NewCollege extends CollegeAbstract
 {
     public function run(array $options)
     {
-        $college = $this->factory->collegeEntitie($options);
+        $college = $this->factory->collegeEntity($options);
         if (false !== $this->collegeExists($college->getName(), $college->getNickname())) {
             throw new \RuntimeException('College already exists in database');
         }

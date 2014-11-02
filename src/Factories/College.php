@@ -2,7 +2,7 @@
 
 namespace CollegeFB\Factories;
 
-use CollegeFB\Entities\College as CollegeEntitie;
+use CollegeFB\Entities\College as CollegeEntity;
 use CollegeFB\Iterators\College as CollegeIterator;
 use CollegeFB\Repositories\MongoDB\College as CollegeRepositoryMongoDB;
 use CollegeFB\Repositories\CollegeInterface;
@@ -14,9 +14,9 @@ use MongoDB;
 
 class College
 {
-    public function collegeEntitie(array $college_info = array())
+    public function collegeEntity(array $college_info = array())
     {
-        return new CollegeEntitie($college_info);
+        return new CollegeEntity($college_info);
     }
 
     public function collegeRepository($database)

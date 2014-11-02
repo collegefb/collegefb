@@ -8,7 +8,7 @@ class UpdateCollege extends CollegeAbstract
 {
     public function run(array $options)
     {
-        $college = $this->factory->collegeEntitie($options);
+        $college = $this->factory->collegeEntity($options);
 
         if ((false === $college->hasId()) || (false === $this->collegeExists($college->getName()))) {
             throw new \RuntimeException('College not found in database');

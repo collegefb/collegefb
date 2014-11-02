@@ -13,12 +13,12 @@ class NewCollegeSpec extends ObjectBehavior
     public function let(CollegeInterface $repository, CollegeFactory $factory)
     {
         $college_to_save = new CollegeEntity();
-        $factory->collegeEntitie(array())->willReturn($college_to_save);
+        $factory->collegeEntity(array())->willReturn($college_to_save);
 
         $college_to_save_that_fails = new CollegeEntity();
         $college_to_save_that_fails->setName('Test');
         $college_to_save_that_fails->setNickname('Test');
-        $factory->collegeEntitie(array('name' => 'fails'))->willReturn($college_to_save_that_fails);
+        $factory->collegeEntity(array('name' => 'fails'))->willReturn($college_to_save_that_fails);
 
         $college_saved = new CollegeEntity();
         $college_saved->setName('Test');
