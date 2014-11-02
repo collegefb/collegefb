@@ -13,9 +13,7 @@ class NewCollege extends CollegeAbstract
             throw new \RuntimeException('College already exists in database');
         }
 
-        $college_entity = $this->repository->save($college);
-
-        return $college_entity;
+        return $this->repository->save($college);
     }
 
     private function collegeExists($college_name, $college_nickname)
