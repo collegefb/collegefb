@@ -10,15 +10,15 @@ class UpdateCollege extends CollegeAbstract
     {
         $college = $this->factory->collegeEntity($options);
 
-        if ((false === $college->hasId()) || (false === $this->collegeExists($college->getName()))) {
+        if ((false === $college->hasId()) || (false === $this->collegeExists($college->getId()))) {
             throw new \RuntimeException('College not found in database');
         }
 
         return $this->repository->save($college);
     }
 
-    private function collegeExists($college_name)
+    private function collegeExists($college_id)
     {
-        return (false !== $this->repository->getByName($college_name));
+        return (false !== $this->repository->getById($college_id));
     }
 }

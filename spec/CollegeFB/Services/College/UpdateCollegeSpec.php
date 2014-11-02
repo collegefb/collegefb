@@ -16,11 +16,11 @@ class UpdateCollegeSpec extends ObjectBehavior
         $factory->collegeEntity(array())->willReturn($college_to_save);
 
         $non_existing_college = new CollegeEntity();
-        $non_existing_college->setName('non_existing');
+        $non_existing_college->setId('non_existing');
         $factory->collegeEntity(array('name' => 'fails'))->willReturn($non_existing_college);
 
-        $repository->getByName(null)->willReturn(true);
-        $repository->getByName('non_existing')->willReturn(false);
+        $repository->getById(null)->willReturn(true);
+        $repository->getById('non_existing')->willReturn(false);
         $repository->save(Argument::any())->willReturnArgument(0);
 
         $this->beConstructedWith($repository, $factory);
