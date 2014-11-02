@@ -2,6 +2,7 @@
 
 namespace CollegeFB\Factories;
 
+use CollegeFB\Entities\News as NewsEntity;
 use CollegeFB\Iterators\News as NewsIterator;
 use CollegeFB\Repositories\MongoDB\News as NewsRepositoryMongoDB;
 use CollegeFB\Repositories\NewsInterface;
