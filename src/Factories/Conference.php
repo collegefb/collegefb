@@ -2,6 +2,7 @@
 
 namespace CollegeFB\Factories;
 
+use CollegeFB\Entities\Conference as ConferenceEntity;
 use CollegeFB\Iterators\Conference as ConferenceIterator;
 use CollegeFB\Repositories\MongoDB\Conference as ConferenceRepositoryMongoDB;
 use CollegeFB\Repositories\ConferenceInterface;
@@ -16,7 +17,7 @@ class Conference
 {
     public function conferenceEntity(array $conference_info = array())
     {
-        return new conferenceEntity($conference_info);
+        return new ConferenceEntity($conference_info);
     }
 
     public function conferenceRepository($database)
