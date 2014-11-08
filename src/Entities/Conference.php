@@ -16,6 +16,7 @@ class Conference extends EntityAbstract
         'website'       => null,
         'facebook'      => null,
         'twitter'       => null,
+        'youtube'       => null,
         'url'           => null,
         'rss'           => null,
         'football_url'  => null,
