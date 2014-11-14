@@ -1,7 +1,7 @@
 {
-    "name": "javiyt/collegefb",
+    "name": "collegefb/collegefb",
     "description": "College Football Database domain logic",
-    "homepage": "https://github.com/javiyt/collegefb",
+    "homepage": "https://github.com/collegefb/collegefb",
     "require-dev": {
         "phpspec/phpspec": "~2.0"
     },
