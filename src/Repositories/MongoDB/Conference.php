@@ -24,7 +24,7 @@ class Conference implements ConferenceInterface
     public function setQueryParams($param, $value)
     {
         if (!empty($value)) {
-            $this->query_params[$param] = $value;
+            $this->query_params[$param] = (string) $value;
         }
     }
 
@@ -49,33 +49,35 @@ class Conference implements ConferenceInterface
     {
         $id = $conference->getId();
 
-        return (!empty($id)) ? $this->collection->remove(array('_id' => $id)) : null;
+        return (!empty($id)) ? $this->collection->remove(array('_id' => new MongoId($id))) : null;
     }
 
     public function getById($conference_id)
     {
-        $id = new MongoId($conference_id);
-
-        return new ConferenceEntity($this->collection->findOne(array('_id' => $id)));
+        return new ConferenceEntity($this->collection->findOne(array('_id' => new MongoId($conference_id))));
     }
 
     public function getByName($conference_name)
     {
-        $conference_info = $this->collection->findOne(array('name' => $conference_name));
+        $conference_info = $this->collection->findOne(array('name' => (string) $conference_name));
 
         return (!empty($conference_info)) ? new ConferenceEntity($conference_info) : false;
     }
 
     public function getByUrl($conference_url)
     {
-        $conference_info = $this->collection->findOne(array('url' => $conference_url));
+        $conference_info = $this->collection->findOne(array('url' => (string) $conference_url));
 
         return (!empty($conference_info)) ? new ConferenceEntity($conference_info) : false;
     }
 
     public function listAll($page, $limit)
     {
-        $conferences = $this->collection->find($this->query_params)->sort(array('name' => 1))->skip($page * $limit)->limit($limit);
+        $conferences = $this->collection
+                            ->find($this->query_params)
+                            ->sort(array('name' => 1))
+                            ->skip((int) $page * (int) $limit)
+                            ->limit((int) $limit);
 
         $conference_iterator = new ConferenceIterator();
 

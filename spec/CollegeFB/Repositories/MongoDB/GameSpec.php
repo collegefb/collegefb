@@ -43,7 +43,7 @@ class GameSpec extends ObjectBehavior
     public function it_should_be_possible_to_remove_given_game()
     {
         $game = new GameEntity();
-        $game->setId(1);
+        $game->setId('54312fd4c863c796148b458b');
 
         $this->remove($game)->shouldBe(true);
     }

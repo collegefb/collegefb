@@ -23,7 +23,7 @@ class College implements CollegeInterface
     public function setQueryParams($param, $value)
     {
         if (!empty($value)) {
-            $this->query_params[$param] = $value;
+            $this->query_params[$param] = (string) $value;
         }
     }
 
@@ -47,35 +47,37 @@ class College implements CollegeInterface
     {
         $id = $college->getId();
 
-        return (!empty($id)) ? $this->collection->remove(array('_id' => $id)) : null;
+        return (!empty($id)) ? $this->collection->remove(array('_id' => new MongoId($id))) : null;
     }
 
     public function getByName($college_name)
     {
-        $college_info = $this->collection->findOne(array('name' => $college_name));
+        $college_info = $this->collection->findOne(array('name' => (string) $college_name));
 
         return (!empty($college_info)) ? new CollegeEntity($college_info) : false;
     }
 
     public function getById($college_id)
     {
-        $id = new MongoId($college_id);
-
-        $college_info = $this->collection->findOne(array('_id' => $id));
+        $college_info = $this->collection->findOne(array('_id' => new MongoId($college_id)));
 
         return (!empty($college_info)) ? new CollegeEntity($college_info) : false;
     }
 
     public function getByUrl($college_url)
     {
-        $college_info = $this->collection->findOne(array('url' => $college_url));
+        $college_info = $this->collection->findOne(array('url' => (string) $college_url));
 
         return (!empty($college_info)) ? new CollegeEntity($college_info) : false;
     }
 
     public function listAll($page, $limit)
     {
-        $colleges = $this->collection->find($this->query_params)->sort(array('name' => 1))->skip($page * $limit)->limit($limit);
+        $colleges = $this->collection
+                        ->find($this->query_params)
+                        ->sort(array('name' => 1))
+                        ->skip((int) $page * (int) $limit)
+                        ->limit((int) $limit);
 
         $college_iterator = new CollegeIterator();
 
