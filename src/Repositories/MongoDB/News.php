@@ -24,7 +24,7 @@ class News implements NewsInterface
     public function setQueryParams($param, $value)
     {
         if (!empty($value)) {
-            $this->query_params[$param] = $value;
+            $this->query_params[$param] = (string) $value;
         }
     }
 
@@ -50,7 +50,7 @@ class News implements NewsInterface
     {
         $id = $news->getId();
 
-        return (!empty($id)) ? $this->collection->remove(array('_id' => $id)) : null;
+        return (!empty($id)) ? $this->collection->remove(array('_id' => new MongoId($id))) : null;
     }
 
     public function clear()
@@ -60,7 +60,11 @@ class News implements NewsInterface
 
     public function listAll($page, $limit)
     {
-        $news = $this->collection->find($this->query_params)->sort(array('pub_date' => -1))->skip($page * $limit)->limit($limit);
+        $news = $this->collection
+                        ->find($this->query_params)
+                        ->sort(array('pub_date' => -1))
+                        ->skip((int) $page * (int) $limit)
+                        ->limit((int) $limit);
 
         $news_iterator = new NewsIterator();
 
@@ -71,7 +75,7 @@ class News implements NewsInterface
 
     public function getByLink($news_link)
     {
-        $news = $this->collection->findOne(array('link' => $news_link));
+        $news = $this->collection->findOne(array('link' => (string) $news_link));
 
         return (!empty($news)) ? new NewsEntity($news) : false;
     }

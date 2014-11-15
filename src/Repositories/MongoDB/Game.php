@@ -43,14 +43,12 @@ class Game implements GameInterface
     {
         $id = $game->getId();
 
-        return (!empty($id)) ? $this->collection->remove(array('_id' => $id)) : null;
+        return (!empty($id)) ? $this->collection->remove(array('_id' => new MongoId($id))) : null;
     }
 
     public function getById($game_id)
     {
-        $id = new MongoId($game_id);
-
-        $game_info = $this->collection->findOne(array('_id' => $id));
+        $game_info = $this->collection->findOne(array('_id' => new MongoId($game_id)));
 
         return (!empty($game_info)) ? new GameEntity($game_info) : false;
     }
@@ -61,8 +59,8 @@ class Game implements GameInterface
 
         $game_info = $this->collection->findOne(array(
             'date'          => $game_date,
-            'home_team'     => $home_team,
-            'road_team'     => $road_team,
+            'home_team'     => (string) $home_team,
+            'road_team'     => (string) $road_team,
         ));
 
         return (!empty($game_info)) ? new GameEntity($game_info) : false;
@@ -71,13 +69,17 @@ class Game implements GameInterface
     public function setQueryParams($param, $value)
     {
         if (!empty($value)) {
-            $this->query_params[$param] = $value;
+            $this->query_params[$param] = (string) $value;
         }
     }
 
     public function listAll($page, $limit)
     {
-        $games = $this->collection->find($this->query_params)->sort(array('date' => -1))->skip($page * $limit)->limit($limit);
+        $games = $this->collection
+                        ->find($this->query_params)
+                        ->sort(array('date' => -1))
+                        ->skip((int) $page * (int) $limit)
+                        ->limit((int) $limit);
 
         $game_iterator = new GameIterator();
 

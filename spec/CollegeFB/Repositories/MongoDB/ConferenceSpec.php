@@ -43,7 +43,7 @@ class ConferenceSpec extends ObjectBehavior
     public function it_should_be_possible_to_remove_given_conference()
     {
         $college = new ConferenceEntity();
-        $college->setId(1);
+        $college->setId('54312fd4c863c796148b458b');
 
         $this->remove($college)->shouldBe(true);
     }
