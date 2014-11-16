@@ -9,7 +9,7 @@ use CollegeFB\Repositories\GameInterface;
 use CollegeFB\Services\Game\NewGame as NewGameService;
 use CollegeFB\Services\Game\UpdateGame as UpdateGameService;
 use CollegeFB\Services\Game\ListGames as ListGamesService;
-use CollegeFB\Services\Game\OneCGame as OneGameService;
+use CollegeFB\Services\Game\OneGame as OneGameService;
 use MongoDB;
 
 class Game

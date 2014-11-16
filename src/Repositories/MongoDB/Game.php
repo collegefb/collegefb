@@ -32,7 +32,9 @@ class Game implements GameInterface
             $game->setId($game_info['_id']);
         }
 
-        $game_info['date'] = new MongoDate($game_info['date']);
+        if (!($game_info['date'] instanceof MongoDate)) {
+            $game_info['date'] = new MongoDate($game_info['date']);
+        }
 
         $this->collection->save($game_info);
 
