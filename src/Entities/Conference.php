@@ -23,6 +23,7 @@ class Conference extends EntityAbstract
         'rss_football'  => null,
         'twitter_football'  => null,
         'facebook_football' => null,
+        'youtube_football'  => null,
         'organization'      => null,
         'updated'       => null,
     );

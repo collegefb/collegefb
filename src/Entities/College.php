@@ -12,6 +12,7 @@ class College extends EntityAbstract
         'conference'          => null,
         'conference_division' => null,
         'division'            => null,
+        'facebook_football'   => null,
         'facebook'            => null,
         'fbs_since'           => null,
         'first_played'        => null,
@@ -31,9 +32,11 @@ class College extends EntityAbstract
         'stadium_surface'     => null,
         'state'               => null,
         'twitter'             => null,
+        'twitter_football'    => null,
         'url'                 => null,
         'website'             => null,
         'youtube'             => null,
+        'youtube_football'    => null,
     );
 
     public function __construct($college_name = null)
