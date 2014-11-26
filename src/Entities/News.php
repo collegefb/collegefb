@@ -13,6 +13,7 @@ class News extends EntityAbstract
         'pub_date'      => null,
         'origin'        => null,
         'origin_id'     => null,
+        'image'         => null,
     );
 
     public function __construct($news = null)
