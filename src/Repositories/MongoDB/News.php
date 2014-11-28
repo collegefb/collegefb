@@ -24,7 +24,11 @@ class News implements NewsInterface
     public function setQueryParams($param, $value)
     {
         if (!empty($value)) {
-            $this->query_params[$param] = (string) $value;
+            if (is_array($value)) {
+                $this->query_params[$param] = array('$in' => $value);
+            } else {
+                $this->query_params[$param] = (string) $value;
+            }
         }
     }
 
